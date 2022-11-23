@@ -32,7 +32,7 @@ module.exports ={
   countProduct: (search)=> {
     return new Promise((resolve, reject)=> {
       const query = "SELECT count(id) as total FROM products WHERE lower(name) like ? or lower(type) like ?"
-      conn.query(query, ['%' + search.toLowerCase(), '%', '%' + search.toLowerCase() + '%'], (err, result)=> {
+      conn.query(query, ['%' + search.toLowerCase() + '%','%' + search.toLowerCase() + '%'], (err, result)=> {
         if (!err) {
           resolve(result[0]?.total ?? 0)
         }else (

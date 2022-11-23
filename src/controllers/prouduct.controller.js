@@ -39,7 +39,7 @@ module.exports = {
       console.log(totalPage)
       const result = await productModel.getAllProduct(dataPerPage, skip, search)
       const meta = {
-        page:currentPage, limit:dataPerPage, totalPage:Math.ceil(totalPage), totalPage:countProduct
+        page:currentPage, limit:dataPerPage, totalPage:Math.ceil(totalPage), totalData:countProduct
       }
       return helpers.response(res, result, 200, "succces", meta)
     },

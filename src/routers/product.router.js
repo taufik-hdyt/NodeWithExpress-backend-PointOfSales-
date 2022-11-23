@@ -1,6 +1,5 @@
 const express = require('express');
 const conn = require('../configs/db');
-
 const router = express.Router()
 const productController = require('../controllers/prouduct.controller')
 
