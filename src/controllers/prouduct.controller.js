@@ -17,24 +17,24 @@ module.exports = {
     type: type
   })
 
-  const id = created.insertId
-  return res.send({
-    id: id,
+  const result = {
+    id:created.insertId,
     name: name,
     price: price,
     stock: stock,
     brand: brand,
     type: type
-  })
+  }
+  return helpers.response(res, result, 200, "succces")
   },
 
   // Menampilkan semua product
     getAllProduct: async (req,res)=>{
       const {page, limit, search} = req.query
       const currentPage = page ? parseInt(page):1;
-      const countProduct = await productModel.countProduct(search) 
+      const countProduct = await productModel.countProduct(search)
       const dataPerPage = limit ? parseInt(limit):10;                 //data perhalaman
-      const totalPage = countProduct / dataPerPage;                   //menghitung total page 
+      const totalPage = countProduct / dataPerPage;                   //menghitung total page
       const skip = (dataPerPage * currentPage) - dataPerPage;
       console.log(totalPage)
       const result = await productModel.getAllProduct(dataPerPage, skip, search)
@@ -76,6 +76,6 @@ module.exports = {
       return helpers.response(res, null, 200, "Data telah di hapus")
     }
 
-    
+
 
 }

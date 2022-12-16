@@ -9,6 +9,11 @@ router.use('/user', user)
 const product = require('./product.router')
 router.use('/product', product)
 
+const order = require ('./order.router')
+router.use('/order', order)
+
+
+
 module.exports = router
 
 

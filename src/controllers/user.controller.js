@@ -14,7 +14,7 @@ module.exports = {
 login: async (req, res) => {
     const {email, password} = req.body
     const user = await userModel.getUserByEmail(email)
-    
+
     if (!user) {
       return helpers.response(res, null, 401, "Email Yang Anda Masakan Salah!")
     }
@@ -45,12 +45,12 @@ register: async(req, res) => {
       email: email,
       password: hash
     })
-    const id = registeredUser.insertId
-    return res.send({
-      id: id,
+    const result = {
+      id:registeredUser.insertId,
       name: name,
       email: email
-    })
+    }
+    return helpers.response(res, result, 200, "succces")
   },
 
   // menampilkan semua data
@@ -68,7 +68,7 @@ getAlluser: async (req, res) => {
     }
     return helpers.response(res, result, 200, "success", meta) // maka akan menampilkan output hasil
   },
-  
+
   // menampilkan data berdasarkan id
 getUserById: async (req, res) => {
     const {id}= req.params
